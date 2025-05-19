@@ -1,0 +1,45 @@
+image: gitpod/workspace-base
+
+tasks:
+- name: install mamba
+  init: |
+    cd /workspace
+    wget "https://github.com/conda-forge/miniforge/releases/download/24.3.0-0/Mambaforge-24.3.0-0-Linux-x86_64.sh"
+    bash Mambaforge-24.3.0-0-Linux-x86_64.sh -b -p /workspace/mambaforge && rm Mambaforge-24.3.0-0-Linux-x86_64.sh
+
+    /workspace/mambaforge/bin/mamba init bash
+    source ${HOME}/.bashrc
+    mamba create -n kmers -c conda-forge r-base r-argparse r-viridis -y
+    mamba activate kmers
+    pip3 install numpy pandas
+
+    cd /workspace
+    mkdir src bin && cd src # create directories for source code & binaries
+    git clone -b sploidyplot_obj https://github.com/KamilSJaron/smudgeplot
+    git clone https://github.com/thegenemyers/FastK
+
+    cd smudgeplot
+    python -m pip install .
+    cd ../FastK && make
+    install -c FastK Fastrm Fastmv Fastcp Fastmerge Histex Tabex Profex Logex Vennex Symmex Haplex Homex Fastcat /workspace/bin/
+
+    # cd /workspace
+    # mkdir -p smudgeplot/data/Scer && wget -P smudgeplot/data/Scer https://sk13.cog.sanger.ac.uk/SRR3265401_{1,2}.fastq.gz
+    
+    gp sync-done bundle
+    
+- name: activate mamba
+  init: gp sync-await bundle # Wait for previous 'inits' to complete
+  command: |
+    cd /workspace
+    /workspace/mambaforge/bin/mamba init bash
+    source ~/.bashrc 
+    mamba activate kmers
+    
+    export PATH=/workspace/bin:"$PATH"
+
+vscode:
+  extensions:
+    - anwar.papyrus-pdf
+
+workspaceLocation: "/workspace"
