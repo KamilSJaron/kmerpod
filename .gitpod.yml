@@ -22,6 +22,8 @@ tasks:
 
     cd smudgeplot
     python -m pip install .
+    mkdir -p exec && make exec/hetmers exec/extract_kmer_pairs
+    install -c exec/hetmers exec/extract_kmer_pairs /workspace/bin/
 
     cd /workspace/src/FastK && make
     install -c FastK Fastrm Fastmv Fastcp Fastmerge Histex Tabex Profex Logex Vennex Symmex Haplex Homex Fastcat /workspace/bin/
