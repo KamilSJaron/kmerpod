@@ -36,8 +36,11 @@ tasks:
 
     # install genomeTelescope R package 
     R -e 'install.packages("GenomeTelescope", repos=NULL, type="source")'
-
+    
     cd /workspace
+    git clone https://github.com/WCSCourses/K-mer_Biodiversity_Genomics_2025.git
+    ln -s /workspace/K-mer_Biodiversity_Genomics_2025/course_data_2025 .
+    
     mkdir -p data/Scer && wget -P data/Scer https://sk13.cog.sanger.ac.uk/SRR3265401_{1,2}.fastq.gz
     
     gp sync-done bundle
