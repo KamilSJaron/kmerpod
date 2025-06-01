@@ -11,6 +11,7 @@ tasks:
     source ${HOME}/.bashrc
     mamba create -n kmers -c conda-forge r-base r-argparse r-viridis r-minpack.lm -y
     mamba activate kmers
+    mamba install -c bioconda sourmash
     pip3 install numpy pandas
 
     cd /workspace
