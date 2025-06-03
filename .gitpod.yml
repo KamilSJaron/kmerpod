@@ -18,6 +18,7 @@ tasks:
     mkdir src bin && cd src # create directories for source code & binaries
     git clone -b sploidyplot_obj https://github.com/KamilSJaron/smudgeplot
     git clone https://github.com/thegenemyers/FastK
+    git clone https://github.com/thegenemyers/MERQURY.FK
     git clone https://github.com/tbenavi1/genomescope2.0
     git clone https://github.com/KamilSJaron/GenomeTelescope
 
@@ -26,10 +27,14 @@ tasks:
     mkdir -p exec && make exec/hetmers exec/extract_kmer_pairs
     install -c exec/hetmers exec/extract_kmer_pairs /workspace/bin/
 
+    # install FastK
     cd /workspace/src/FastK && make
     install -c FastK Fastrm Fastmv Fastcp Fastmerge Histex Tabex Profex Logex Vennex Symmex Haplex Homex Fastcat /workspace/bin/
-    
-    
+
+    # install MERQURY.FK
+    cd /workspace/src/MERQURY.FK && make
+    install -c HAPmaker CNplot ASMplot HAPplot MerquryFK KatComp KatGC /workspace/bin/
+
     # install genomescope2 (both package and executible script)
     cd /workspace/src/
     R -e 'install.packages("genomescope2.0", repos=NULL, type="source")'
