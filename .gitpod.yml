@@ -12,7 +12,9 @@ tasks:
     mamba create -n kmers -c conda-forge r-base r-argparse r-viridis r-minpack.lm -y
     mamba activate kmers
     mamba install -c bioconda sourmash -y
-    pip3 install numpy pandas
+    
+    pip3 install numpy pandas sourmash_plugin_betterplot
+    sudo apt install -y libgl1
 
     cd /workspace
     mkdir src bin && cd src # create directories for source code & binaries
