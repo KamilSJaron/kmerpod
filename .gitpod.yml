@@ -21,7 +21,7 @@ tasks:
     git clone -b sploidyplot_obj https://github.com/KamilSJaron/smudgeplot
     git clone https://github.com/thegenemyers/FastK
     git clone https://github.com/thegenemyers/MERQURY.FK
-    git clone https://github.com/tbenavi1/genomescope2.0
+    git clone --depth 1 https://github.com/tbenavi1/genomescope2.0
     git clone https://github.com/KamilSJaron/GenomeTelescope
 
     cd smudgeplot
@@ -46,7 +46,7 @@ tasks:
     R -e 'install.packages("GenomeTelescope", repos=NULL, type="source")'
     
     cd /workspace
-    git clone https://github.com/WCSCourses/K-mer_Biodiversity_Genomics_2025.git
+    git clone --depth 1 https://github.com/WCSCourses/K-mer_Biodiversity_Genomics_2025.git
     ln -s /workspace/K-mer_Biodiversity_Genomics_2025/course_data_2025 .
     
     mkdir -p data/Scer && wget -P data/Scer https://sk13.cog.sanger.ac.uk/SRR3265401_{1,2}.fastq.gz
